@@ -1,0 +1,24 @@
+{% set private = True if post.private and not post.author.id == current_user.id else False %}
+<table class="table table-hover">
+	<tr>
+		<td width="70px">
+			<a href="{{ url_for('main.user', id=post.author.id) }}">
+				<img src="{{ post.author.avatar(70) }}"/>
+			</a>
+		</td>
+		<td >
+			{% set user_link %}
+			<a href="{{ url_for('main.user', id=post.author.id) }}">
+				{{ post.author.name }}
+			</a>
+			{% endset %}
+			{% if private %}
+				<span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="top"
+					  title="Private Post"></span>
+			{% endif %}
+			{{ user_link }} said {{ moment(post.timestamp).fromNow() }}:
+			<br>
+			<span id="post{{ post.id }}">{{ post.body }}</span>
+		</td>
+	</tr>
+</table>

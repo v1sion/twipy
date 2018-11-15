@@ -1,12 +1,14 @@
 import os
+import string
+import random
 from app import create_app, db
 from app.models import User, Post
 
 app = create_app()
 
 
-def dummy_password():
-    return '{flag}Us3_vault_for_no_p4sswords_1n_s0urce_cod3.'
+def dummy_password(size=8, chars=string.ascii_letters + string.digits):
+    return ''.join(random.choice(chars) for i in range(size))
 
 
 def seed_db():

@@ -1,0 +1,13 @@
+Dear {{ user.name }},
+
+Welcome to Twipy,
+
+To activate your account please click on the following link:
+
+{{ url_for('auth.activate', token=token, _external=True) }}
+
+Thank you for registering with us.
+
+Sincerely,
+
+The Twipy Team
