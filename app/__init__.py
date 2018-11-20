@@ -40,7 +40,7 @@ def create_app(config_class=Config):
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
-    file_handler = RotatingFileHandler('debug.log', maxBytes=10240)
+    file_handler = RotatingFileHandler('debug.log', maxBytes=102400, backupCount=10)
     file_handler.setFormatter(logging.Formatter(
         '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     file_handler.setLevel(logging.INFO)
